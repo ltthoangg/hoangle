@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="utf-8">
+<title>Portfolio | Hoang Le</title>
+<link rel='icon' href='logo-2.png'>
+
+<link href="desktop.css" rel="stylesheet" type="text/css" media="screen and (min-width: 1025px)" />
+<link href="tablet.css" rel="stylesheet" type="text/css" media="screen and (min-width: 481px) and (max-width: 1024px)" />
+<link href="phone.css" rel="stylesheet" type="text/css" media="screen and (max-width: 480px)" />
+<link href='https://fonts.googleapis.com/css?family=Wire+One|Raleway:300' rel='stylesheet' type='text/css'>
+<meta name="viewport" content="width=device-width; initial-scale=1.0;">	
+
+<style type="text/css">
+@font-face {
+	font-family: 'Brandon Grotesque';
+	src: url('Fonts/Brandon Grotesque') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'TXC Pearl';
+	src: url('Fonts/TXC Pearl/52476.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'Lulo';
+	src: url('Fonts/Lulo/52074.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'Millesime';
+	src: url('Fonts/Millesime/94.ttf') format('truetype');
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    overflow-x: hidden;
+}
+	
+body {
+	font-family: 'Brandon Grotesque', sans-serif;
+	font-size: 16px;
+	line-height: 1.6;
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const tabs = document.querySelectorAll('.tab-item');
+    
+    tabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+            // Remove active class from all tabs
+            tabs.forEach(t => t.classList.remove('active'));
+            
+            // Add active class to clicked tab
+            this.classList.add('active');
+            
+            // Hide all tab contents
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.remove('active'));
+            
+            // Hide all works-url elements
+            const urls = document.querySelectorAll('.works-url');
+            urls.forEach(url => url.classList.remove('active'));
+            
+            // Get selected tab id
+            const tabId = this.getAttribute('data-tab');
+            
+            // Show the selected tab content
+            document.querySelector(`.tab-content#${tabId}`).classList.add('active');
+            
+            // Show the corresponding works-url
+            document.querySelector(`.works-url#${tabId}`).classList.add('active');
+        });
+    });
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    const burgerIcon = document.querySelector('.mobile-menu .burgerIcon');
+    const menu = document.getElementById('burger-menu');
+    let isMenuOpen = false;
+
+    burgerIcon.addEventListener('click', function() {
+        isMenuOpen = !isMenuOpen;
+        menu.style.display = isMenuOpen ? 'block' : 'none';
+    });
+});
+
+function updateCheckerboard() {
+    const divider = document.querySelector('.checkered-divider');
+    const rows = document.querySelectorAll('.checkered-row-1, .checkered-row-2');
+    
+    // Get the container width
+    const containerWidth = divider.offsetWidth;
+    
+    // Determine ideal square size (adjust for mobile)
+    const isMobile = window.innerWidth <= 600;
+    const minSize = isMobile ? 20 : 30; // Smaller min size for mobile
+    const maxSize = isMobile ? 30 : 50; // Smaller max size for mobile
+    
+    // Calculate number of squares needed
+    let squareSize = maxSize;
+    let numberOfSquares = Math.floor(containerWidth / squareSize);
+    
+    // Adjust square size to fit perfectly
+    squareSize = containerWidth / numberOfSquares;
+	
+    // If squares become too small, increase number of squares
+    if (squareSize < minSize) {
+        numberOfSquares = Math.ceil(containerWidth / minSize);
+        squareSize = containerWidth / numberOfSquares;
+    }
+    
+    // Update each row
+    rows.forEach(row => {
+        // Clear existing squares
+        row.innerHTML = '';
+        
+        // Add new squares
+        for (let i = 0; i < numberOfSquares; i++) {
+            const square = document.createElement('div');
+            square.className = 'square';
+            row.appendChild(square);
+        }
+    });
+}
+
+// Wrap the initial call in DOMContentLoaded
+document.addEventListener('DOMContentLoaded', function() {
+    // Initial setup
+    updateCheckerboard();
+    
+    // Update on window resize with debounce
+    let resizeTimeout;
+    window.addEventListener('resize', function() {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(updateCheckerboard, 100);
+    });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+
+    // Show the button when the user scrolls down 200px
+    window.onscroll = function () {
+        if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+            scrollToTopBtn.style.display = 'block'; // Show the button
+        } else {
+            scrollToTopBtn.style.display = 'none'; // Hide the button
+        }
+    };
+
+    // Scroll to the top of the page when the button is clicked
+    scrollToTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0, // Scroll to the top
+            behavior: 'smooth' // Smooth scroll
+        });
+    });
+});
+</script>
+</head>
+
+<body>
+<div id="scrollToTopBtn">
+    <img src="top.png" alt="Scroll to Top" />
+</div>
+<header>
+	<div class='mobile-menu'>
+		<img src='logo.png''/>
+		<img src='hamburgermenu.png' class='burgerIcon'/>
+		<nav id='burger-menu'>
+			<ul>
+				<li><a href='#home'>Home</a></li>
+				<li><a href='#about'>About<a></li>
+				<li><a href='#resume'>Resume</a></li>
+				<li><a href='#works'>Works</a></li>
+				<li><a href='#faqs'>FAQs</a></li>
+				<li><a href='#contact'>Contact</a></li>
+			</ul>
+		</nav>
+	</div>
+	<div class='nav-menu'>
+		<nav id='menu'>
+			<ul class="left">
+				<li><a href='#home'>Home</a></li>
+				<li><a href='#about'>About</a></li>
+				<li><a href='#resume'>Resume</a></li>
+			</ul>
+			<img src='logo.png' />
+			<ul class="right">
+				<li><a href='#works'>Works</a></li>
+				<li><a href='#faqs'>FAQs</a></li>
+				<li><a href='#contact'>Contact</a></li>
+			</ul>
+		</nav>
+	</div>
+	<div class='intro'>
+		<h2 style=''>Hey there, I am Hoang Le</h2>
+		<h1 style=''>WEB DEVELOPER</h1>
+	</div>
+</header>
+
+<div class="checkered-divider">
+    <div class="checkered-row-1">
+    </div>
+    <div class="checkered-row-2">
+    </div>
+</div>
+
+<main>
+	<section id='about' class='about'>
+		<div class='about-wrap'>
+			<h1 class='page-title' style='color: #f5671a; text-decoration: #f5671a wavy underline;'>About Me</h1>
+			<div class='about-upper'>
+				<div class='about-tab'>
+					<img src='logo-2.png' style='width: 20px; height: 20px;'/>
+					about me
+				</div>
+				<div class='about-address'>
+					<img src='arrow-left-white.png' />
+					<img src='arrow-right-white.png' />
+					<img src='rotate-white.png' />
+					<div class='about-url'>https://about.me</div>
+				</div>
+			</div>
+			<div class='about-lower'>
+				<div class='about-info'>
+					<div class='about-me'>
+						<img src='portrait-1.jpeg' />
+						<div class='description'>
+						<h3 class='about-title'>About Me</h3>
+							<p>Name: Hoang Thi Thanh Le</p>
+							<p>Age: 24 y/o</p>
+							<p>Sex: Female</p>
+							<p>Pronounce: She/Her/Hers</p>
+							<p>Current: Harrisonburg, VA</p>
+						</div>
+					</div>
+					<div class='about-facts'>
+						<img src='vietnamese-flag.jpg' />
+						<div class='description''>
+						<h3 class='about-title'>Some Facts</h3>
+							<p>From HCMC, Vietnam</p>
+							<p>Studied abroad at 19</p
+							<p>Fluent in vietnamese and english</p>
+							<p>Second of three siblings</p>
+						</div>
+					</div>
+					<div class='about-interests'>
+						<img src='cat-lover.jpeg' />
+						<div class='description'>
+						<h3 class='about-title'>Interests</h3>
+							<p>Cat lover with 2 american shorthairs</p>
+							<p>Love cooking western & vietnamese dishes</p>
+							<p>Passionate about web design & development</p>
+							<p>Model assembly & clay sculpting in my free time</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	
+	<section id='resume' class='resume'>
+		<div class='resume-wrap'>
+			<h1 class='page-title' style='color: #4a71be; text-decoration: #4a71be wavy underline;'>Resume</h1>
+			<div class='edu'>
+				<p>B.B.A., Computer Information Systems, James Madison University</p>
+				<p>GPA: 3.421</p>
+			</div>
+			<div class='reg1'>
+				<div class='reg1-col1'>
+					<div class='reg1-ins1'>
+						<h1 class='resume-title'>Experiences</h1>
+						<dl>
+						<dt><span class='role'>Web Manager/Administrative Assistant,</span> HienThanh Company, HCMC, Vietnam, Summer 2022</dt>
+							<li>Recorded data entry, maintained financial records, prepared financial reports, provided phone service, etc.</li>
+							<li>Managed the company websites, regularly updated product information, and adjusted the website appearance when needed.</li>
+						</dl>
+						<br />
+						<dl>
+						<dt><span class='role'>Website Developer,</span> YesLiberia, Pennsylvania, United States, October 2024 – <span class='role'>Present</span></dt>
+							<li>Manage and update WordPress sites using Elementor, customizing themes and plugins to enhance functionality and design.</li>
+							<li>Embed forms, optimize SEO, and implement responsive, cross-browser compatible solutions.</li>
+							<li>Improve usability, performance, and security through frontend and backend enhancements.</li>
+						</dl>
+					</div>
+					<div class='reg3'>
+						<div class='reg3-ins'>
+							<h1 class='resume-title'>Technical Skills</h1>
+							<ul>
+								<li><span class='skill'>Software Development</span> using Python, Java, C#, ASP.net Core</li>
+								<li><span class='skill'>Website Design</span> using HTML, CSS, JavaScript, and jQuery UI technology, WordPress, Figma</li>
+								<li><span class='skill'>Database Retrieval</span> with SQL </li>
+								<li><span class='skill'>Database Modeling</span> with ERDs, Oracle </li>
+								<li><span class='skill'>Business Process Modeling</span> with UML activity diagram</li>
+								<li><span class='skill'>Computer Network and Cloud Architecture Modeling</span> with network diagrams </li>
+								<li><span class='skill'>Network Management</span> using Cisco Packet Tracer, TCP/IP, firewalls, and device configuration</li>
+								<li><span class='skill'>Cloud Server Management</span> using Windows Virtual Servers, AWS, and Azure</li>
+								<li><span class='skill'>System Analysis</span> using Agile/Scrum, requirements gathering, feasibility analysis, SDLC</li>
+								<li><span class='skill'>Customer Relationship Management</span> using Salesforce</li>
+								<li><span class='skill'>Statistical Data Analysis and Modeling</span> with statistics, regression, optimization, simulation, Excel</li>
+								<li><span class='skill'>Cyber Security</span> using firewalls, risk assessment, risk modeling</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class='reg1-col2'>
+					<div class='reg2'>
+						<div class='reg2-ins'>
+							<img src='portrait-sticker.png' class='portrait-sticker'/>
+							<h1 class='resume-title' style='align-content: center; margin: 0 auto;'>Contact</h1>
+							<p><img src="location-white.png" class='resume-icon'>Harrisonburg, VA</p>
+							<p><img src="mail-white.png" class='resume-icon'>hoangle.mc1502@gmail.com</p>
+							<p><img src="phone-white.png" class='resume-icon'>(540) 282 0179</p>
+						</div>
+					</div>
+					<div class='reg1-ins2'>
+						<h1 class='resume-title'>Course Projects</h1>
+						<dl>
+						<dt><span class='role'>Full-Stack Developer,</span> Madison County Government Assessment System Project, JMU, Spring 2024</dt>
+							<li>Developed a web app to support government planning, integrating ASP.NET Core with SQL Server for data-driven analysis and communication.</li>
+							<li>Built features for management and quantitative analysis, real-time chat, and role-based access for secure, tailored user experiences.</li>
+							<li>Used GitHub for team collaboration and efficient project management.</li>
+						</dl>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class='resume-remain'>
+			<div class='resume-remain-wrap'>
+				<div class='language'>
+					<div class='title-wrap'>
+						<h1 style='color: #f5671a;'>Languages</h1>
+						<div class='title-line'></div>
+					</div>
+					<div class='english'>
+						<p>English</p>
+						<div class='level' style='background: linear-gradient(to right, #f5671a 80%, white 20%);'></div>
+					</div>
+					<div class='vietnamese'>
+						<p>Vietnamese</p>
+						<div class='level' style='background: #f5671a;'></div>
+					</div>
+				</div>
+				<div class='campus'>
+					<div class='title-wrap'>
+						<h1 style='color: #f5671a;'>Campus Involvement</h1>
+						<div class='title-line'></div>
+					</div>
+					<dl>
+					<dt><span style='font-weight: bold; color: #4a71be;'>Volunteer,</span>  JMU GIVE, Harrisonburg, VA, September 2022</dt>
+						<li>SPCA – dog walker and played with cats</li>
+						<li>Participated in planting trees</li>
+					</dl>
+					<dl>
+					<dt><span style='font-weight: bold; color: #4a71be;'> JMU Association for Information Systems,</span> JMU, Harrisonburg, February 2023</dt>
+						<li>Networked with industry representatives</li>
+						<li>Enhanced learning by attending meetings</li>
+					</dl>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id='works' class='works'>
+		<div class='works-wrap'>
+			<h1 class='page-title' style='color: #2ca34f; text-decoration: #2ca34f wavy underline;'>Works</h1>
+			<div class='tab-container'>
+				<ul class='works-tab'>
+					<li  class="tab-item active" data-tab="tab1"><img src='yesliberiaicon.png' style='width: 20px; height: 20px;'/>
+					yesliberia</li>
+					<li  class="tab-item" data-tab="tab2"><img src='hienthanhicon.png' style='width: 20px; height: 20px;'/>
+					hienthanh</li>
+				</ul>
+				<div class='works-address'>
+					<img src='arrow-left-white.png' />
+					<img src='arrow-right-white.png' />
+					<img src='rotate-white.png' />
+					<div id='tab1' class='works-url active'>https://yesliberia.works</div>
+					<div id='tab2' class='works-url'>https://hienthanh.works</div>
+				</div>
+			</div>
+			
+			<div class='tab-content-container'>
+				<div id="tab1" class="tab-content active">
+					<div class='works-info'>
+						<div class='company'>
+							<img src='yesliberia.png' style='width: 200px; height: 200px; object-fit: scale-down;'/>
+							<h3 class='company-title'>YesLiberia</h3>
+							<a href='https://yesliberia.org/' target="_blank">https://yesliberia.org/</a>
+							<p>I am currently working on updating the website to a new version.</p>
+						</div>
+						<div class='experience'>
+							<p>At YesLiberia, I serve as a Website Developer, where I manage and enhance the organization’s WordPress websites using Elementor. My responsibilities include customizing themes and configuring plugins to improve both functionality and design. I focus on optimizing the website’s performance by ensuring it is responsive across all devices and browsers, while embedding interactive elements like forms to facilitate user engagement. Additionally, I implement SEO best practices, such as refining metadata and optimizing content, to improve the site’s visibility and search engine rankings.</p>
+							<br/>
+							<p>Beyond design and functionality, I am dedicated to improving the usability, performance, and security of the website. This involves backend enhancements, including regular updates, troubleshooting, and addressing vulnerabilities to ensure the site runs efficiently and securely. I also streamline navigation and optimize load speeds to create an intuitive and engaging user experience. This role has allowed me to apply my web development skills in a meaningful way, contributing to YesLiberia’s mission while expanding my expertise in managing both the technical and creative aspects of website development.</p>
+						</div>
+					</div>
+				</div>
+				<div id="tab2" class="tab-content">
+					<div class='works-info'>
+						<div class='company'>
+							<img src='hienthanh.png'  style='width: 200px; height: 200px; object-fit: scale-down;'/>
+							<h3 class='company-title'>Hien Thanh</h3>
+							<a href='https://hienthanh.vn/' target="_blank">https://hienthanh.vn/</a>
+							<p>June 2023</p>
+						</div>
+						<div class='experience'>
+							<p>In July 2022, I transitioned from the role of Administrative Assistant to the role of Web Manager at HienThanh Company, a position I held until August 2023. As Web Manager, I took charge of maintaining and updating the company’s websites, ensuring that product information was regularly refreshed and accurate. I was responsible for adjusting the website’s appearance and layout to align with branding goals and improve user engagement. This role required a combination of technical skills and creativity, as I worked to enhance the website's functionality and user experience. Through this position, I gained valuable experience in website management and developed a deeper understanding of digital content strategy and online branding.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</main>
+
+<div class="scallop-up"></div>
+<section id='faqs' class='faqs'>
+	<div class='faqs-wrap'>
+		<div class='FAQs'>
+			<h1 class='page-title'>FAQs</h1>
+			<div class='faqs-wrap'>
+				<details>
+					<summary>When are you available to start a new position?</summary>
+					<div>I am available to start immediately.</div>
+				</details>
+				<details>
+					<summary>Are you willing to relocate for a job?</summary>
+					<div>Yes, I am willing to relocate for the right opportunity.</div>
+				</details>
+				<details>
+					<summary>What is your prefered salary range?</summary>
+					<div>My preferred salary range depends on the role, responsibilities, and experience required. I'm open to discussing a fair offer.</div>
+				</details>
+			</div>
+		</div>
+		<div id='contact' class='contact'>
+			<h1 class='page-title'>Let's Work Together!!!</h1>
+			<h1 class='contact-me'>contact me</h1>
+			<div class='contact-wrap'>
+				<div class='contact-type'>
+					<img src='cellphone.png' />
+					<h2>phone</h2>
+					<p>(540) 282-0179</p>
+				</div>
+				<div class='contact-type'>
+					<img src='linkedin.png' />
+					<h2>linkedin</h2>
+					<a href='https://www.linkedin.com/in/hoang-le-15aab322b/' target='_blank'><p>profile link</p></a>
+				</div>
+				<div class='contact-type'>
+					<img src='gmail.png' />
+					<h2>gmail</h2>
+					<p>hoangle.mc1502@gmail.com</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+</section>
+<div class="scallop-down"></div>
+
+<footer>
+	<div class='footer-wrap'>
+		<img src='logo-2.png'/>
+		<div>Copyright &copy 2024. All Rights Reserved.</div>
+		<div>Privacy policy</div>
+		<div>Terms of service</div>
+		<div> Website by: <span class='style=color: #f5e37e;'>Hoang Le</span></div>
+	</div>
+</div>
+</footer>
+</body>
+</html>
