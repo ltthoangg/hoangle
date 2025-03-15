@@ -325,7 +325,7 @@ h1.page-title {
 }
 
 .resume {
-	height: 1550px;
+	height: 1500px;
 }
 
 .resume-remain {
@@ -343,7 +343,7 @@ h1.page-title {
 .reg1 {
 	background-color: #4a71be;
 	width: 100%;
-	height: 700px;
+	height: 650px;
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	padding: 20px 40px;
